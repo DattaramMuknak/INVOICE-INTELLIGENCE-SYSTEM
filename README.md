@@ -11,7 +11,6 @@
 - <a href="#application">Application</a>
 - <a href="#project-structure">Project Structure</a>
 - <a href="#how-to-run-this-project">How to Run This Project</a>
-- <a href="#author--contact">Author & Contact</a>
 ---
 
 <h2><a class="anchor" id="project-overview"></a>📌 Project Overview</h2>
