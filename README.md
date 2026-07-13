@@ -119,41 +119,44 @@ A **Streamlit application** demonstrates the complete pipeline:
 ---
 
 <h2><a class="anchor" id="project-structure"></a>📁 Project Structure</h2>
-```
+
+```bash
 inventory-invoice-analytics/
 │
 ├── data/
 │   └── inventory.db
-|
+│
 ├── freight_cost_prediction/
 │   ├── data_preprocessing.py
 │   ├── model_evaluation.py
 │   └── train.py
-│   
+│
 ├── invoice_flagging/
 │   ├── data_preprocessing.py
 │   ├── model_evaluation.py
+│   ├── model_evaluation.py
 │   └── train.py
-│   
-├── inference/                       
+│
+├── inference/
 │   ├── predict_freight.py
 │   └── predict_invoice_flag.py
 │
-│
-├── models/                         
+├── models/
 │   ├── predict_freight_model.pkl
-|   ├── scaler.pkl
+│   ├── scaler.pkl
 │   └── predict_flag_invoice.pkl
 │
 ├── notebooks/
-|   ├── Invoice Flagging.pkl
+│   ├── Invoice Flagging.pkl
 │   └── Predict Freight Cost.ipynb
 │
 ├── app.py
 ├── README.md
 └── .gitignore
 ```
+
 ---
+
 <h2><a class="anchor" id="how-to-run-this-project"></a>How to Run This Project</h2>
 
 1. Clone the repository:
@@ -174,7 +177,6 @@ python inference/predict_invoice_flag.py
 ```bash
 streamlit run app.py
 ```
-
 
 ---
 <h2><a class="anchor" id="author--contact"></a>Author & Contact</h2>

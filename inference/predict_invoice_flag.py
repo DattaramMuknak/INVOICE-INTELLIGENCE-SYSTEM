@@ -2,15 +2,17 @@ import joblib
 import pandas as pd
 
 MODEL_PATH = "models/predict_flag_invoice.pkl"
+SCALER_PATH = "models/scaler.pkl"
 
-
-def load_model(model_path: str = MODEL_PATH):
+def load_model(model_path: str = MODEL_PATH, scaler_path: str = SCALER_PATH):
     """
     Load trained classifier model.
     """
     with open(model_path, "rb") as f:
         model = joblib.load(f)
-    return model
+    with open(scaler_path, "rb") as f:
+        scaler = joblib.load(f)
+    return model, scaler
 
 
 def predict_invoice_flag(input_data):
@@ -25,9 +27,10 @@ def predict_invoice_flag(input_data):
     -------
     pd.DataFrame with predicted flag
     """    
-    model = load_model()
+    model,scaler  = load_model()
     input_df = pd.DataFrame(input_data)
-    input_df['Predicted_Flag'] = model.predict(input_df).round()
+    scaled_input = scaler.transform(input_df)
+    input_df['Predicted_Flag'] = model.predict(scaled_input).round()
     return input_df
 
 if __name__ == "__main__":

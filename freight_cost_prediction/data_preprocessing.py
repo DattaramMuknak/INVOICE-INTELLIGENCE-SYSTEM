@@ -17,7 +17,7 @@ def prepare_features(df: pd.DataFrame):
     """
     Select features and target variable.
     """
-    X = df[["Quantity", "Dollars"]]
+    X = df[["Dollars"]]
     y = df["Freight"]
     return X, y
 

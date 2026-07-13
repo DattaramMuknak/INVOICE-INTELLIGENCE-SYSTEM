@@ -58,7 +58,7 @@ if selected_model == "Freight Cost Prediction":
 
     st.markdown("""
     **Objective:**  
-    Predict freight cost for a vendor invoice using **Quantity** and **Invoice Dollars**  
+    Predict freight cost for a vendor invoice using **Invoice Dollars**  
     to support budgeting, forecasting, and vendor negotiations.
     """)
 
@@ -66,13 +66,6 @@ if selected_model == "Freight Cost Prediction":
         col1, col2 = st.columns(2)
 
         with col1:
-            quantity = st.number_input(
-                "📦 Quantity",
-                min_value=1,
-                value=1200
-            )
-
-        with col2:
             dollars = st.number_input(
                 "💰 Invoice Dollars",
                 min_value=1.0,
@@ -83,7 +76,6 @@ if selected_model == "Freight Cost Prediction":
 
     if submit_freight:
         input_data = {
-            "Quantity": [quantity],
             "Dollars": [dollars]
         }
 
@@ -96,19 +88,7 @@ if selected_model == "Freight Cost Prediction":
             value=f"${prediction[0]:,.2f}"
         )
 
-        df_plot = pd.DataFrame({
-            "Metric": ["Invoice Dollars", "Predicted Freight"],
-            "Value": [dollars, prediction[0]]
-        })
 
-        fig = px.bar(
-            df_plot,
-            x="Metric",
-            y="Value",
-            title="Invoice Value vs Predicted Freight Cost"
-        )
-
-        st.plotly_chart(fig, use_container_width=True)
 
 # -------------------------------------------------------
 # Invoice Flag Prediction
@@ -175,30 +155,3 @@ else:
             st.error("🚨 Invoice requires **MANUAL APPROVAL**")
         else:
             st.success("✅ Invoice is **SAFE for Auto-Approval**")
-
-        df_risk = pd.DataFrame({
-            "Feature": [
-                "Invoice Quantity",
-                "Invoice Dollars",
-                "Freight",
-                "Total Item Quantity",
-                "Total Item Dollars"
-            ],
-            "Value": [
-                invoice_quantity,
-                invoice_dollars,
-                freight,
-                total_item_quantity,
-                total_item_dollars
-            ]
-        })
-
-        fig = px.bar(
-            df_risk,
-            x="Feature",
-            y="Value",
-            title="Invoice Feature Distribution"
-        )
-
-        st.plotly_chart(fig, use_container_width=True)
-
